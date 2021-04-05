@@ -6,7 +6,6 @@ import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getCurrencySymbol } from './../HelperFunctions.js'
-import CoinGecko from 'coingecko-api'
 
 const CoinCard = ({ coin }) => {
     const DETAIL_PAGE = `/crypto_tracker/coins/${coin.id}`
@@ -55,29 +54,28 @@ const CoinCard = ({ coin }) => {
 
     const onMouseOver = () => setIsHover(true);
     const onMouseOut = () => setIsHover(false);
-    const CoinGeckoClient = new CoinGecko();
 
     useEffect(() => {
-        const func = async () => {
-          
+        const fetchApi = async () => {
             try {
-                const res = await CoinGeckoClient.coins.markets({
-                    vs_currency: currency,
-                    ids:coin.id
-                });
+                const res = await axios.get('https://rdmycorsproxy.herokuapp.com/https://api.coingecko.com/api/v3/coins/markets', {
+                    params: {
+                        vs_currency: currency,
+                        ids: coin.id,
+                    }
+                })
                 setPrice(res.data[0]["current_price"]);
                 setChange24(res.data[0]["price_change_percentage_24h"]);
             } catch (error) {
                 console.log(error);
             }
-        };
-        const intervalId = setInterval(() => { func() }, 1800);
-
-        return () => {
-            clearInterval(intervalId);
         }
-
-    }, [currency, coin.id])
+        fetchApi()
+        const intervalId = setInterval(() => { fetchApi() }, 60000)
+        return () => {
+            clearInterval(intervalId)
+        }
+    }, [currency,coin.id])
 
     return ( //212f45 252422 333533
         <Card className={classes.root} elevation={11} style={{ backgroundColor: '#212f45' }}

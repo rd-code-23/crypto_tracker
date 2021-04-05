@@ -27,11 +27,12 @@ const useStyles = makeStyles({
     // minWidth: '100vw'
   }
 })
-
+console.log("app");
 function App() {
   const classes = useStyles();
 
   return (
+   
     <ThemeProvider theme={defaultTheme}>
        {/* <CssBaseline /> */}
       <Paper className={classes.appContainer} square>

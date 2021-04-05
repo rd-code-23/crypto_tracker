@@ -71,7 +71,7 @@ const CoinCard = ({ coin }) => {
             }
         }
         fetchApi()
-        const intervalId = setInterval(() => { fetchApi() }, 60000)
+        const intervalId = setInterval(() => { fetchApi() }, 2500)
         return () => {
             clearInterval(intervalId)
         }

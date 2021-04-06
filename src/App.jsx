@@ -7,7 +7,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import { CoinWatchListContextProvider } from './context/CoinWatchListContext.jsx';
 import { CoinsContextProvider } from './context/CoinsContext.jsx';
 import defaultTheme from './DefaultTheme.js';
-// import CoinDetailPage from './pages/CoinDetailPage.jsx';
+import CoinDetailPage from './pages/CoinDetailPage.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -42,7 +42,7 @@ function App() {
                 <BrowserRouter>
                   <Switch>
                     <Route exact path="/" component={HomePage} />
-                    {/* <Route exact path="/coins/:id" component={CoinDetailPage} /> */}
+                    <Route exact path="/coins/:id" component={CoinDetailPage} />
                   </Switch>
                 </BrowserRouter>
               </CoinWatchListContextProvider>

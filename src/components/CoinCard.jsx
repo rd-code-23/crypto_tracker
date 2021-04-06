@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { getCurrencySymbol } from './../HelperFunctions.js'
 
 const CoinCard = ({ coin }) => {
-    const DETAIL_PAGE = `/crypto_tracker/coins/${coin.id}`
+    const DETAIL_PAGE = `/coins/${coin.id}`
     const [isHover, setIsHover] = useState(false);
     const [price, setPrice] = useState(0);
     const [change24, setChange24] = useState(0);

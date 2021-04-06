@@ -150,8 +150,6 @@ const CoinCard = ({ coin }) => {
 
                         </Grid>
 
-
-
                     </CardContent>
                 </Card >
             </div>

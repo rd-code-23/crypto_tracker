@@ -84,7 +84,7 @@ const CoinDetailPage = () => {
 
                         <Grid item xs={12}>
                             <Paper className={`${classes.paper} ${classes.details}`}   >
-                                <Details coin={coin} />
+                                <Details coin={coin}  isLoading={isLoading} />
                             </Paper>
                         </Grid>
                     </Grid>

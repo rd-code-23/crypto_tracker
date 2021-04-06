@@ -85,12 +85,6 @@ const CoinCard = ({ coin }) => {
             clearInterval(intervalId)
         }
     }, [currency, coin.id])
-    const navigate = (e) => {
-        e.stopPropagation();
-        //push "path1" to history
-        history.push(DETAIL_PAGE)
-    }
-
 
     const renderPage = () => {
 
@@ -100,61 +94,61 @@ const CoinCard = ({ coin }) => {
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}>
                     <CardContent className={classes.cardHover} style={{ padding: 0 }} >
-                        {isLoading ?
-                            (
-                                <Grid container justify="center" alignItems="center">
-                                    <Grid item>
-                                        <CircularProgress style={{ marginTop: '50px' }} />
-                                    </Grid>
-                                </Grid>
-                            ) :
-                            (
-                                <Grid container direction="column" justify="center" alignItems="flex-start">
 
-                                    <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
+                        <Grid container direction="column" justify="center" alignItems="flex-start">
+
+                            <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
+                                <Grid item>
+
+                                    <Grid item container justify="center" alignItems="center" style={{ padding: '5px' }}>
                                         <Grid item>
-
-                                            <Grid item container justify="center" alignItems="center" style={{ padding: '5px' }}>
-                                                <Grid item>
-                                                    <img src={coin.image} className={classes.logo} alt="coin" />
-                                                </Grid>
-                                                <Grid item >
-                                                    <Typography className={classes.symbol} gutterBottom>
-                                                        {coin.symbol.toUpperCase()}
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-
+                                            <img src={coin.image} className={classes.logo} alt="coin" />
                                         </Grid>
+                                        <Grid item >
+                                            <Typography className={classes.symbol} gutterBottom>
+                                                {coin.symbol.toUpperCase()}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
 
-                                        <Grid item>
-                                            <Grid item container justify="center" alignItems="center" spacing={1}>
-                                                <Grid item className={classes.priceChangePercentage}>
-                                                    {change24}%
+                                </Grid>
+
+                                <Grid item>
+                                    <Grid item container justify="center" alignItems="center" spacing={1}>
+                                        <Grid item className={classes.priceChangePercentage}>
+                                            {change24}%
                                              </Grid>
 
-                                                <div onClick={(e) => { e.stopPropagation(); history.push('/') }}>
-                                                    <Grid item style={{ zIndex: 1 }} >
-                                                        <IconButton aria-label="delete" style={{ zIndex: 1 }}
-                                                            className={classes.untrackButton}
-                                                            onClick={() => { unTrackCoin(coin.id) }}>
-                                                            <HighlightOffIcon style={{ zIndex: 1 }} />
-                                                        </IconButton>
-                                                    </Grid>
-                                                </div>
+                                        <div onClick={(e) => { e.stopPropagation(); history.push('/') }}>
+                                            <Grid item style={{ zIndex: 1 }} >
+                                                <IconButton aria-label="delete" style={{ zIndex: 1 }}
+                                                    className={classes.untrackButton}
+                                                    onClick={() => { unTrackCoin(coin.id) }}>
+                                                    <HighlightOffIcon style={{ zIndex: 1 }} />
+                                                </IconButton>
+                                            </Grid>
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Grid item>
+                                {isLoading ?
+                                    (
+                                        <Grid container justify="center" alignItems="center" >
+                                            <Grid item style={{ margin: '40px' }}>
+                                                <CircularProgress />
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-
-                                    <Grid item>
+                                    ) :
+                                    (
                                         <Typography className={classes.currentPrice} gutterBottom>
                                             {getCurrencySymbol(currency)}{price.toLocaleString(undefined, { minimumFractionDigits: `${currency === 'btc' ? 7 : 2}` })}
                                         </Typography>
-                                    </Grid>
+                                    )}
+                            </Grid>
 
-                                </Grid>
-                            )
-                        }
+                        </Grid>
 
 
 

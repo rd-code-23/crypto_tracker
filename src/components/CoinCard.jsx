@@ -5,7 +5,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { getCurrencySymbol } from './../HelperFunctions.js'
+import { getCurrencySymbol } from './../HelperFunctions.js';
+import { useHistory } from 'react-router-dom';
+
 
 const CoinCard = ({ coin }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`
@@ -13,11 +15,13 @@ const CoinCard = ({ coin }) => {
     const [price, setPrice] = useState(0);
     const [change24, setChange24] = useState(0);
     const { unTrackCoin, currency } = useContext(CoinWatchListContext);
+    const history = useHistory()
 
     const useStyles = makeStyles({
         root: {
             minWidth: '275px',
             maxHeight: '220px',
+            cursor:'pointer'
         },
         symbol: {
             fontSize: '18px',
@@ -77,14 +81,18 @@ const CoinCard = ({ coin }) => {
             clearInterval(intervalId)
         }
     }, [currency, coin.id])
-
+    const navigate = (e) => {
+        e.stopPropagation();
+        //push "path1" to history
+        history.push(DETAIL_PAGE)
+    }
     return ( //212f45 252422 333533
 
-        <Card className={classes.root} elevation={11} style={{ backgroundColor: '#212f45' }}
-            onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}>
-            <CardContent className={classes.cardHover} style={{ padding: 0 }} >
-                <Link to={DETAIL_PAGE} style={{ textDecoration: 'none' }}>
+        <div onClick={(e) => { e.stopPropagation(); history.push(DETAIL_PAGE) }}>
+            <Card className={classes.root} elevation={11} style={{ backgroundColor: '#212f45' }}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}>
+                <CardContent className={classes.cardHover} style={{ padding: 0 }} >
                     <Grid container direction="column" justify="center" alignItems="flex-start">
 
                         <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
@@ -108,7 +116,8 @@ const CoinCard = ({ coin }) => {
                                     <Grid item className={classes.priceChangePercentage}>
                                         {change24}%
                                 </Grid>
-                                    <Link to={'/'} style={{ textDecoration: 'none' }}>
+
+                                <div onClick={(e) => { e.stopPropagation(); history.push('/') }}>
                                         <Grid item style={{ zIndex: 1 }} >
                                             <IconButton aria-label="delete" style={{ zIndex: 1 }}
                                                 className={classes.untrackButton}
@@ -116,7 +125,7 @@ const CoinCard = ({ coin }) => {
                                                 <HighlightOffIcon style={{ zIndex: 1 }} />
                                             </IconButton>
                                         </Grid>
-                                    </Link>
+                                        </div>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -128,9 +137,9 @@ const CoinCard = ({ coin }) => {
                         </Grid>
 
                     </Grid>
-                </Link>
-            </CardContent>
-        </Card >
+                </CardContent>
+            </Card >
+        </div>
 
     )
 }

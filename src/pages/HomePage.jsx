@@ -3,7 +3,7 @@ import { Grid, CircularProgress, } from '@material-ui/core';
 import CoinWatchListing from '../components/CoinWatchListing.jsx';
 import TrackCoin from '../components/TrackCoin.jsx';
 import { CoinsContext } from './../context/CoinsContext.jsx';
-// import Header from './../components/Header.jsx';
+import Header from './../components/Header.jsx';
 
 const HomePage = () => {
     const { isLoading } = useContext(CoinsContext);
@@ -21,7 +21,7 @@ const HomePage = () => {
         } else {
             return (
                 <>
-                    {/* <Header /> */}
+                    <Header />
                     <Grid container justify="center" alignContent="center" alignItems="center">
                         <Grid container justify="center" alignContent="center" alignItems="center">
                             <TrackCoin />

@@ -1,13 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
-import CoinGecko from 'coingecko-api'
 import axios from 'axios'
 export const CoinsContext = createContext();
 
 export const CoinsContextProvider = props => {
     const [coins, setCoins] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const CoinGeckoClient = new CoinGecko();
-console.log(CoinGeckoClient);
    
 useEffect(() => {
     const fetchApi = async () => {

@@ -4,10 +4,8 @@ import { Grid, Card, CardActions, CardContent, Typography, IconButton, CircularP
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { getCurrencySymbol } from './../HelperFunctions.js';
 import { useHistory } from 'react-router-dom';
-
 
 const CoinCard = ({ coin }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`
@@ -94,12 +92,10 @@ const CoinCard = ({ coin }) => {
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}>
                     <CardContent className={classes.cardHover} style={{ padding: 0 }} >
-
                         <Grid container direction="column" justify="center" alignItems="flex-start">
 
                             <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
                                 <Grid item>
-
                                     <Grid item container justify="center" alignItems="center" style={{ padding: '5px' }}>
                                         <Grid item>
                                             <img src={coin.image} className={classes.logo} alt="coin" />
@@ -110,7 +106,6 @@ const CoinCard = ({ coin }) => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
-
                                 </Grid>
 
                                 <Grid item>
@@ -149,12 +144,10 @@ const CoinCard = ({ coin }) => {
                             </Grid>
 
                         </Grid>
-
                     </CardContent>
                 </Card >
             </div>
         )
-
     }
 
     return ( //212f45 252422 333533

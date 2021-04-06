@@ -29,7 +29,7 @@ const CoinDetailPage = () => {
             marginTop: '2%'
         },
         coin: {
-          padding: '20px'
+            padding: '20px'
         },
         // details: {
         //     padding: '10px'
@@ -71,20 +71,19 @@ const CoinDetailPage = () => {
     //border: 'solid green 2px' style={{ maxHeight: '100vh' }}
     return (
         <>
-        <Header />
+            <Header />
             <Grid container justify="center" alignItems="center">
-
-                <Grid container item justify="center" alignItems="center" className={classes.mainContainer}  >
-                    <Grid container direction="column" item xs={6} spacing={1}   >
+                <Grid container item justify="center" alignItems="center" className={classes.mainContainer}>
+                    <Grid container direction="column" item xs={6} spacing={1}>
                         <Grid item xs={12} >
-                            <Paper className={`${classes.paper} ${classes.coin}`} >
+                            <Paper className={`${classes.paper} ${classes.coin}`}>
                                 <Coin coin={coin} />
                             </Paper>
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Paper className={`${classes.paper} ${classes.details}`}   >
-                                <Details coin={coin}  isLoading={isLoading} />
+                            <Paper className={`${classes.paper} ${classes.details}`}>
+                                <Details coin={coin} isLoading={isLoading} />
                             </Paper>
                         </Grid>
                     </Grid>
@@ -94,10 +93,7 @@ const CoinDetailPage = () => {
                             graph
                         </Paper>
                     </Grid>
-
-
                 </Grid>
-
             </Grid>
         </>
     )

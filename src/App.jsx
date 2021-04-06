@@ -18,12 +18,15 @@ const theme = createMuiTheme({
 const useStyles = makeStyles({
   appContainer: {
     minHeight: '100vh',
+    width: '100vw'
+    // maxWidth: '1000px'
     //  minWidth: '100vw'
   },
 
   container: {
     // minWidth: '80vw',
     minHeight: '100vh',
+    // maxWidth: '1600px'
     // minWidth: '100vw'
   }
 })
@@ -36,7 +39,7 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
        {/* <CssBaseline /> */}
       <Paper className={classes.appContainer} square>
-        <Grid className={classes.container}>
+        {/* <Grid className={classes.container}> */}
             <CoinsContextProvider>
               <CoinWatchListContextProvider>
                 <BrowserRouter>
@@ -47,7 +50,7 @@ function App() {
                 </BrowserRouter>
               </CoinWatchListContextProvider>
             </CoinsContextProvider>
-        </Grid>
+        {/* </Grid> */}
       </Paper>
     </ThemeProvider>
   );

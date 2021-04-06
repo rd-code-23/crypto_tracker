@@ -26,7 +26,8 @@ const CoinCard = ({ coin }) => {
             marginRight: '30px',
         },
         priceChangePercentage: {
-            padding: '5px',
+            // padding: '5px',
+            // marginLeft: '30px',
             color: `${coin.price_change_percentage_24h < 0 ? 'red' : 'green'}`,
             fontFamily: 'Russo One'
         },
@@ -43,7 +44,7 @@ const CoinCard = ({ coin }) => {
             marginRight: '5px',
         },
         untrackButton: {
-            padding: 0,
+            padding: 5,
             margin: 0,
             color: '#8d0801',
             visibility: `${isHover ? 'visible' : 'hidden'}`,
@@ -75,63 +76,62 @@ const CoinCard = ({ coin }) => {
         return () => {
             clearInterval(intervalId)
         }
-    }, [currency,coin.id])
+    }, [currency, coin.id])
 
     return ( //212f45 252422 333533
+
         <Card className={classes.root} elevation={11} style={{ backgroundColor: '#212f45' }}
             onMouseOver={onMouseOver}
             onMouseOut={onMouseOut}>
             <CardContent className={classes.cardHover} style={{ padding: 0 }} >
-                <Grid container direction="column" justify="center" alignItems="flex-start">
+                <Link to={DETAIL_PAGE} style={{ textDecoration: 'none' }}>
+                    <Grid container direction="column" justify="center" alignItems="flex-start">
 
-                    <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
-                        <Grid item>
+                        <Grid item container direction="row" justify="space-between" alignItems="flex-start" style={{ padding: '5px' }}>
+                            <Grid item>
 
-                            <Grid item container justify="center" alignItems="center" style={{ padding: '5px' }}>
-                                <Link to={DETAIL_PAGE} style={{ textDecoration: 'none' }}> <Grid item>
-                                    <img src={coin.image} className={classes.logo} alt="coin" />
-                                </Grid>
-                                </Link>
-                                <Link to={DETAIL_PAGE} style={{ textDecoration: 'underline' }}>
+                                <Grid item container justify="center" alignItems="center" style={{ padding: '5px' }}>
+                                    <Grid item>
+                                        <img src={coin.image} className={classes.logo} alt="coin" />
+                                    </Grid>
                                     <Grid item >
                                         <Typography className={classes.symbol} gutterBottom>
                                             {coin.symbol.toUpperCase()}
                                         </Typography>
                                     </Grid>
-                                </Link>
+                                </Grid>
+
                             </Grid>
 
-                        </Grid>
-
-                        <Grid item>
-                            <Grid item container justify="center" alignItems="center" spacing={1}>
-                                <Link to={DETAIL_PAGE} style={{ textDecoration: 'none' }}>
+                            <Grid item>
+                                <Grid item container justify="center" alignItems="center" spacing={1}>
                                     <Grid item className={classes.priceChangePercentage}>
                                         {change24}%
                                 </Grid>
-                                </Link>
-                                <Grid item  >
-                                    <IconButton aria-label="delete"
-                                        className={classes.untrackButton}
-                                        onClick={() => unTrackCoin(coin.id)}>
-                                        <HighlightOffIcon />
-                                    </IconButton>
+                                    <Link to={'/'} style={{ textDecoration: 'none' }}>
+                                        <Grid item style={{ zIndex: 1 }} >
+                                            <IconButton aria-label="delete" style={{ zIndex: 1 }}
+                                                className={classes.untrackButton}
+                                                onClick={() => { unTrackCoin(coin.id) }}>
+                                                <HighlightOffIcon style={{ zIndex: 1 }} />
+                                            </IconButton>
+                                        </Grid>
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
 
-                    <Link to={DETAIL_PAGE} style={{ textDecoration: 'none' }}>
                         <Grid item>
                             <Typography className={classes.currentPrice} gutterBottom>
                                 {getCurrencySymbol(currency)}{price.toLocaleString(undefined, { minimumFractionDigits: `${currency === 'btc' ? 7 : 2}` })}
                             </Typography>
                         </Grid>
-                    </Link>
 
-                </Grid>
+                    </Grid>
+                </Link>
             </CardContent>
         </Card >
+
     )
 }
 

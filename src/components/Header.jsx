@@ -27,7 +27,7 @@ const Header = () => {
             <Toolbar >
                 <Grid container justify="space-between" alignItems="center">
                     {/* Logo from https://www.flaticon.com/free-icon/cpu_3985642 */}
-                    <Link to={'/crypto_tracker'} style={{ textDecoration: 'none' }}>
+                    <Link to={'/'} style={{ textDecoration: 'none' }}>
                         <Grid item>
                             <img src={logo} style={{ height: '55px' }} alt="logo" />
                         </Grid>

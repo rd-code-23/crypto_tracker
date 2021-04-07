@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Button, Grid } from '@material-ui/core/';
-import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
+import { CoinWatchListContext } from './../../context/CoinWatchListContext.jsx';
 import SearchBox from './SearchBox.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { Grid, CircularProgress, } from '@material-ui/core';
-import CoinWatchListing from '../components/CoinWatchListing.jsx';
-import TrackCoin from '../components/TrackCoin.jsx';
+import CoinWatchListing from '../components/HomePage/CoinWatchListing';
+import TrackCoin from '../components/HomePage/TrackCoin.jsx';
 import { CoinsContext } from './../context/CoinsContext.jsx';
 import Header from './../components/Header.jsx';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const HomePage = () => {
     const { isLoading } = useContext(CoinsContext);
@@ -30,6 +31,7 @@ const HomePage = () => {
                     </Grid >
                 </>
             );
+
         }
     }
     return (

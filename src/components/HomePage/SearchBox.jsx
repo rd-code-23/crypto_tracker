@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { TextField } from '@material-ui/core/';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { CoinsContext } from './../context/CoinsContext.jsx';
+import { CoinsContext } from './../../context/CoinsContext.jsx';
 import { makeStyles } from "@material-ui/core/styles";
 
 const SearchBox = ({ setSearch }) => {

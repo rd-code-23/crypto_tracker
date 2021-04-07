@@ -12,7 +12,7 @@ const Header = () => {
                 color: '#778DA9'
             }
         },
-        mw: {
+        toolbarWidth: {
             maxWidth: '750px',
             width: '100vw'
         }
@@ -30,7 +30,7 @@ const Header = () => {
         <AppBar position="static" style={{ backgroundColor: '#1B263B' }}>
             <Grid container justify="center">
                 <Grid container  justify="center">
-                    <Toolbar className={classes.mw} >
+                    <Toolbar className={classes.toolbarWidth} >
                         <Grid container item justify="space-between" alignItems="center">
                             {/* Logo from https://www.flaticon.com/free-icon/cpu_3985642 */}
                             <Link to={'/'} style={{ textDecoration: 'none' }}>

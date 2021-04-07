@@ -4,11 +4,11 @@ import LargeCoinCard from './CoinCards/LargeCoinCard';
 import SmallCoinCard from './CoinCards/SmallCoinCard';
 import { CoinWatchListContext } from './../../context/CoinWatchListContext.jsx';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import {MOBILE_WIDTH} from './../../HelperFunctions'
 const CoinWatchListing = () => {
     const { coinWatchList } = useContext(CoinWatchListContext);
 
-    const mobile = useMediaQuery("(max-width: 1024px)");
+    const mobile = useMediaQuery(MOBILE_WIDTH);
 
     return (
         <>

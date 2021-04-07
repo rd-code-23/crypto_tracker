@@ -26,7 +26,7 @@ const CoinDetailPage = () => {
         },
         mainContainer: {
             // height: '50%',
-            width: '80%',
+            width: '90%',
             marginTop: '1%'
         },
         coin: {
@@ -74,9 +74,9 @@ const CoinDetailPage = () => {
         <>
             <Header />
             <Grid container justify="center" alignItems="center">
-                <Grid container item justify="center" alignItems="center" className={classes.mainContainer}  spacing={4}>
+                <Grid container item justify="center" alignItems="stretch" className={classes.mainContainer}  spacing={4}>
                     <Grid container direction="column" item xs={6} spacing={1} >
-                        <Grid item xs={12} style={{marginTop:"70px"}}>
+                        <Grid item xs={12} >
                             <Paper className={`${classes.paper} ${classes.coin}`}>
                                 <Coin coin={coin} />
                             </Paper>
@@ -88,11 +88,13 @@ const CoinDetailPage = () => {
                             </Paper>
                         </Grid>
                     </Grid>
+                    <Grid container direction="column" item xs={6} spacing={1} >
 
-                    <Grid item xs={6} >
+                    <Grid item xs={12} >
                         <Paper className={`${classes.paper} ${classes.graph}`} style={{padding: '30px'}}>
                          <Graph coin={coin}/>
                         </Paper>
+                    </Grid>
                     </Grid>
                 </Grid>
             </Grid>

@@ -23,7 +23,7 @@ const Detail = ({ category, value, style }) => {
 
     return (
         <div className={classes.stat}>
-            <Grid item container xs={12} justify="space-between" >
+            <Grid item container  justify="space-between" >
                 <Grid item >
                     <Typography variant="h6" style={{ fontSize: '14px' }} >
                         {category}

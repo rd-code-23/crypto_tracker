@@ -7,10 +7,10 @@ import { getCurrencySymbol } from '../../../HelperFunctions.js';
 import { useHistory } from 'react-router-dom';
 import useCoinData from '../../../api/CoinData.jsx';
 
-const SmallCoinCard = ({ coin }) => {
+const SmallCoinCard = ({ coin,unTrackCoin, currency }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`;
     const { price, change24, isLoading } = useCoinData(coin);
-    const { unTrackCoin, currency } = useContext(CoinWatchListContext);
+    //const { unTrackCoin, currency } = useContext(CoinWatchListContext);
     const history = useHistory();
 
     const useStyles = makeStyles({

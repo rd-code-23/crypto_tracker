@@ -5,7 +5,6 @@ import { Route } from "react-router-dom";
 import HomePage from './pages/HomePage.jsx';
 import { BrowserRouter, Switch } from "react-router-dom";
 import { CoinWatchListContextProvider } from './context/CoinWatchListContext.jsx';
-import { CoinsContextProvider } from './context/CoinsContext.jsx';
 import defaultTheme from './DefaultTheme.js';
 import CoinDetailPage from './pages/CoinDetailPage.jsx';
 
@@ -40,7 +39,7 @@ function App() {
        {/* <CssBaseline /> */}
       <Paper className={classes.appContainer} square>
         {/* <Grid className={classes.container}> */}
-            <CoinsContextProvider>
+       
               <CoinWatchListContextProvider>
                 <BrowserRouter>
                   <Switch>
@@ -49,7 +48,7 @@ function App() {
                   </Switch>
                 </BrowserRouter>
               </CoinWatchListContextProvider>
-            </CoinsContextProvider>
+        
         {/* </Grid> */}
       </Paper>
     </ThemeProvider>

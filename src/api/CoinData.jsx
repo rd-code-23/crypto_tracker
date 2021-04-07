@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
 import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import axios from 'axios'
 

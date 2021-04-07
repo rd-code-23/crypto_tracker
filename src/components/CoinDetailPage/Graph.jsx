@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Line } from 'react-chartjs-2';
 import { CoinWatchListContext } from './../../context/CoinWatchListContext.jsx';
 import { useParams } from 'react-router'
-
+// https://github.com/adopted-ember-addons/ember-pikaday/issues/156
 const Graph = ({ coin }) => {
 
     const [data, setData] = useState({});
@@ -75,7 +75,7 @@ const Graph = ({ coin }) => {
 
     // })
     // const {day} = data;
-    console.log(prices);
+   // console.log(prices);
     //console.log("Coin:", day[0].x);
     return (
         <div>

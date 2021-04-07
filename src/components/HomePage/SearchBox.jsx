@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext,useRef } from 'react';
 import { TextField } from '@material-ui/core/';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { CoinsContext } from './../../context/CoinsContext.jsx';
 import { makeStyles } from "@material-ui/core/styles";
-
+import useAllCoinsData from "./../../api/AllCoinsData";
+import { LensTwoTone } from '@material-ui/icons';
 const SearchBox = ({ setSearch }) => {
     const useStyles = makeStyles(theme => ({
         border: {
@@ -36,36 +36,43 @@ const SearchBox = ({ setSearch }) => {
         }
     }));
     const classes = useStyles();
+    const mountRef = useRef(true);
+    const { coins } = useAllCoinsData(mountRef);
+    let defaultProps = null;
+   // if (mountRef.current) {
+        defaultProps = {
+            options: coins,
+            getOptionLabel: (option) => option.name
+        }
+  //  }
 
-    const { coins } = useContext(CoinsContext);
-
-    const defaultProps = {
-        options: coins,
-        getOptionLabel: (option) => option.name
-    };
 
     return (
-        <Autocomplete
-            className={`${classes.dropdownArrow} ${classes.border}  ${classes.input}`}
-            {...defaultProps}
-            id="auto-select"
-            autoSelect
-            onChange={(e, v) => setSearch(v)}
-            renderOption={option => {
-                return (
-                    <div className={classes.dropDownText}>
-                        <img src={option.image} className={classes.logo} alt="coin" />
-                        {option.name}
-                    </div>
-                );
-            }}
-            renderInput={(params) =>
-                <TextField className={classes.searchLabel}  {...params} label="Search" margin="normal" variant="outlined"
-                    InputLabelProps={{
-                        className: classes.inputLabel
+        <>
+            {/* {mountRef.current && */}
+                <Autocomplete
+                    className={`${classes.dropdownArrow} ${classes.border}  ${classes.input}`}
+                    {...defaultProps}
+                    id="auto-select"
+                    autoSelect
+                    onChange={(e, v) => setSearch(v)}
+                    renderOption={option => {
+                        return (
+                            <div className={classes.dropDownText}>
+                                <img src={option.image} className={classes.logo} alt="coin" />
+                                {option.name}
+                            </div>
+                        );
                     }}
-                />}
-        />
+                    renderInput={(params) =>
+                        <TextField className={classes.searchLabel}  {...params} label="Search" margin="normal" variant="outlined"
+                            InputLabelProps={{
+                                className: classes.inputLabel
+                            }}
+                        />}
+                />
+            {/* } */}
+        </>
     )
 }
 

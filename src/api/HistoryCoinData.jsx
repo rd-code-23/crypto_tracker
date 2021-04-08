@@ -27,7 +27,6 @@ const useHistoryCoinData = (id) => {
                             days: 1
                         }
                     })
-               // convertData(res.data.prices)
                setCoinData({
                 day: formatData(res.data.prices),
                });

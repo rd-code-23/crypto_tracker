@@ -29,7 +29,6 @@ const HomePage = () => {
                     </Grid >
                 </>
             );
-
         }
     }
     return (

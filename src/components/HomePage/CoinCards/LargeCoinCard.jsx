@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Card, CardContent, Typography, IconButton, CircularProgress } from '@material-ui/core/';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { CoinWatchListContext } from '../../../context/CoinWatchListContext.jsx';
 import { getCurrencySymbol } from '../../../HelperFunctions.js';
 import { useHistory } from 'react-router-dom';
 import useCoinData from '../../../api/CoinData.jsx';
 
-const LargeCoinCard = ({ coin,unTrackCoin, currency }) => {
+const LargeCoinCard = ({ coin, unTrackCoin, currency }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`
     const [isHover, setIsHover] = useState(false);
     const { price, change24, isLoading } = useCoinData(coin.id)
-    const history = useHistory()
+    const history = useHistory();
 
     const useStyles = makeStyles({
         root: {

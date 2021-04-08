@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { Grid, Paper } from '@material-ui/core';
 import { useParams } from 'react-router'
-import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import { makeStyles } from "@material-ui/core/styles";
 import Coin from '../components/CoinDetailPage/Coin.jsx';
 import Details from '../components/CoinDetailPage/Details.jsx';
@@ -39,7 +37,6 @@ const CoinDetailPage = () => {
     const classes = useStyles();
 
     const { id } = useParams();
-    const { currency } = useContext(CoinWatchListContext);
     const { coin, isLoading } = useCoinData(id)
 
     return (
@@ -64,7 +61,6 @@ const CoinDetailPage = () => {
                         </Grid>
                         <Grid item xs={9} >
                             <Paper className={`${classes.paper}`} style={{ padding: '5px' }}>
-
                                 <Graph coin={coin} />
                             </Paper>
                         </Grid>
@@ -88,10 +84,9 @@ const CoinDetailPage = () => {
                         </Grid>
                         <Grid item xs={7} >
                             <Paper className={`${classes.paper}`} style={{ padding: '20px' }}>
-                                <Graph coin={coin} />
+                                <Graph coin={coin} isLoading={isLoading}  />
                             </Paper>
                         </Grid>
-
                     </Grid>
                 )
             }

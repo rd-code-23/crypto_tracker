@@ -9,7 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { MOBILE_WIDTH } from './../../HelperFunctions';
 import Moment from 'moment'
 // https://github.com/adopted-ember-addons/ember-pikaday/issues/156
-const Graph = ({ coin }) => {
+const Graph = ({ coin, isLoading }) => {
 
     const [data, setData] = useState({});
     const [timestamp, setTimestamp] = useState([]);
@@ -34,8 +34,8 @@ const Graph = ({ coin }) => {
             });
             return a;
         }, []);
-       // setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
-          setTimestamp(d.map(item =>  Moment(new Date(item)).format("M/D/YYYY, h:mm:ss a") ).filter((item, index) => !(index % 2)))
+        // setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
+        setTimestamp(d.map(item => Moment(new Date(item)).format("M/D/YYYY, h:mm:ss a")).filter((item, index) => !(index % 2)))
         setPrices(d.filter((item, index) => index % 2))
 
 
@@ -87,7 +87,7 @@ const Graph = ({ coin }) => {
     return (
         <>
             {mobile ? (
-                <div style={{ minHeight: '40vh',maxHeight: '50vh' }}>
+                <div style={{ minHeight: '40vh', maxHeight: '50vh' }}>
                     <Line
                         data={{
                             labels: timestamp,
@@ -114,7 +114,7 @@ const Graph = ({ coin }) => {
                                 }]
                             },
                             elements: {
-                                point:{
+                                point: {
                                     radius: 0
                                 }
                             }

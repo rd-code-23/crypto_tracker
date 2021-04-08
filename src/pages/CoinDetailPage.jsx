@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { useParams } from 'react-router'
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +11,6 @@ import { MOBILE_WIDTH } from './../HelperFunctions';
 import useCoinData from './../api/CoinData';
 
 const CoinDetailPage = () => {
-    const mobile = useMediaQuery(MOBILE_WIDTH);
     const useStyles = makeStyles(theme => ({
         paper: {
             color: theme.palette.text.secondary,
@@ -37,6 +36,7 @@ const CoinDetailPage = () => {
     const classes = useStyles();
 
     const { id } = useParams();
+    const mobile = useMediaQuery(MOBILE_WIDTH);
     const { coin, isLoading } = useCoinData(id)
 
     return (
@@ -46,22 +46,22 @@ const CoinDetailPage = () => {
                 (
                     <Grid container spacing={1} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
                         <Grid container direction="column" item xs={9} spacing={1} >
-                            <Grid item  >
+                            <Grid item>
                                 <Paper className={`${classes.paper}  ${classes.coin}`}>
                                     <Coin coin={coin} />
                                 </Paper>
                             </Grid>
 
-                            <Grid item >
+                            <Grid item>
                                 <Paper className={`${classes.paper}`}>
                                     <Details coin={coin} isLoading={isLoading} />
                                 </Paper>
                             </Grid>
 
                         </Grid>
-                        <Grid item xs={9} >
+                        <Grid item xs={9}>
                             <Paper className={`${classes.paper}`} style={{ padding: '5px' }}>
-                                <Graph coin={coin} />
+                                <Graph />
                             </Paper>
                         </Grid>
 
@@ -70,7 +70,7 @@ const CoinDetailPage = () => {
                 (
                     <Grid container spacing={2} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
                         <Grid container direction="column" item xs={4} spacing={1} >
-                            <Grid item  >
+                            <Grid item>
                                 <Paper className={`${classes.paper}  ${classes.coin}`}>
                                     <Coin coin={coin} />
                                 </Paper>
@@ -84,7 +84,7 @@ const CoinDetailPage = () => {
                         </Grid>
                         <Grid item xs={7} >
                             <Paper className={`${classes.paper}`} style={{ padding: '20px' }}>
-                                <Graph coin={coin}   />
+                                <Graph />
                             </Paper>
                         </Grid>
                     </Grid>

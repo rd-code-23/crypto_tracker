@@ -1,16 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
 import axios from 'axios'
-import Moment from 'moment'
 
 const useHistoryCoinData = (id) => {
-
     const { currency } = useContext(CoinWatchListContext);
     const [isLoading, setIsLoading] = useState(false);
     const [coinData, setCoinData] = useState({});
 
     const formatData = (data) => {
-     
        return data.map(item => {
             return {
                 x: item[0],
@@ -18,6 +15,7 @@ const useHistoryCoinData = (id) => {
             }
         })
     }
+
     useEffect(() => {
         const fetchApi = async () => {
             try {

@@ -9,7 +9,7 @@ import useCoinData from '../../../api/CoinData.jsx';
 
 const SmallCoinCard = ({ coin,unTrackCoin, currency }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`;
-    const { price, change24, isLoading } = useCoinData(coin);
+    const { price, change24, isLoading } = useCoinData(coin.id);
     //const { unTrackCoin, currency } = useContext(CoinWatchListContext);
     const history = useHistory();
 

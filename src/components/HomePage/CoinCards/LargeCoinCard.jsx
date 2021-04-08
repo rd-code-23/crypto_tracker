@@ -10,7 +10,7 @@ import useCoinData from '../../../api/CoinData.jsx';
 const LargeCoinCard = ({ coin,unTrackCoin, currency }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`
     const [isHover, setIsHover] = useState(false);
-    const { price, change24, isLoading } = useCoinData(coin)
+    const { price, change24, isLoading } = useCoinData(coin.id)
     const history = useHistory()
 
     const useStyles = makeStyles({

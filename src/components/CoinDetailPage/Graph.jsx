@@ -112,6 +112,11 @@ const Graph = ({ coin }) => {
                                         maxTicksLimit: 5
                                     }
                                 }]
+                            },
+                            elements: {
+                                point:{
+                                    radius: 0
+                                }
                             }
                         }}
                     />    </div>) : (<Line

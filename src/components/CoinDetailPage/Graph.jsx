@@ -15,7 +15,7 @@ const Graph = ({ coin }) => {
     const [timestamp, setTimestamp] = useState([]);
     const [prices, setPrices] = useState([]);
     const { currency } = useContext(CoinWatchListContext);
-    const mobile = useMediaQuery(MOBILE_WIDTH);
+    const mobile = useMediaQuery("(max-width: 1290px)");
 
     //  console.log("Coin: ", coin.name);
     const { id } = useParams();

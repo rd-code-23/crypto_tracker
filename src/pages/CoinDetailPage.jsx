@@ -107,7 +107,7 @@ const CoinDetailPage = () => {
                     </Grid>
                 ) :
                 (<Grid container spacing={2} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
-                    <Grid container direction="column" item xs={3} spacing={1} >
+                    <Grid container direction="column" item xs={4} spacing={1} >
                         <Grid item  >
                             <Paper className={`${classes.paper}  ${classes.coin}`}>
                                 <Coin coin={coin} />

@@ -80,28 +80,31 @@ const CoinDetailPage = () => {
         <>
             <Header />
             {mobile ?
-                (<Grid container spacing={2} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
-                    <Grid container direction="column" item xs={8} spacing={1} >
-                        <Grid item  >
-                            <Paper className={`${classes.paper}  ${classes.coin}`}>
-                                <Coin coin={coin} />
+                (
+                    <Grid container spacing={1} justify="center" alignItems="center"  className={`${classes.mainContainer} `} >
+                        <Grid container direction="column" item xs={9} spacing={1} >
+                            <Grid item  >
+                                <Paper className={`${classes.paper}  ${classes.coin}`}>
+                                    <Coin coin={coin} />
+                                </Paper>
+                            </Grid>
+
+                            <Grid item >
+                                <Paper className={`${classes.paper}`}>
+                                    <Details coin={coin} isLoading={isLoading} />
+                                </Paper>
+                            </Grid>
+
+                        </Grid>
+                        <Grid item xs={9} >
+                            <Paper className={`${classes.paper}`} style={{ padding: '5px' }}>
+
+                                <Graph coin={coin} />
                             </Paper>
                         </Grid>
 
-                        <Grid item >
-                            <Paper className={`${classes.paper}`}>
-                                <Details coin={coin} isLoading={isLoading} />
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} >
-                        <Paper className={`${classes.paper}`} style={{ padding: '20px' }}>
-                            <Graph coin={coin} />
-                        </Paper>
-                    </Grid>
-                    </Grid>
-                    
 
-                </Grid>
+                    </Grid>
                 ) :
                 (<Grid container spacing={2} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
                     <Grid container direction="column" item xs={3} spacing={1} >

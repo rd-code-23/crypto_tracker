@@ -34,8 +34,8 @@ const Graph = ({ coin }) => {
             });
             return a;
         }, []);
-        setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
-        //  setTimestamp(d.map(item =>  Moment(new Date(item)).format("M/D/YYYY, h:mm:ss a") ).filter((item, index) => !(index % 2)))
+       // setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
+          setTimestamp(d.map(item =>  Moment(new Date(item)).format("M/D/YYYY, h:mm:ss a") ).filter((item, index) => !(index % 2)))
         setPrices(d.filter((item, index) => index % 2))
 
 

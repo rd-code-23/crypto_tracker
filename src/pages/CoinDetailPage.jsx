@@ -84,7 +84,7 @@ const CoinDetailPage = () => {
                         </Grid>
                         <Grid item xs={7} >
                             <Paper className={`${classes.paper}`} style={{ padding: '20px' }}>
-                                <Graph coin={coin} isLoading={isLoading}  />
+                                <Graph coin={coin}   />
                             </Paper>
                         </Grid>
                     </Grid>

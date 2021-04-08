@@ -20,7 +20,7 @@ const Details = ({ coin, isLoading }) => {
                         </Grid>
                     ) :
                     (
-                        <Grid container direction="column" justify="space-between" item  xs ={10} style={{ marginTop: '30px',padding: '10px' }}>
+                        <Grid container direction="column" justify="space-between" item  lg={10} style={{ marginTop: '30px',padding: '10px' }}>
                             <Detail
                                 category={'Price'}
                                 value={`${getCurrencySymbol(currency)} ${coin.current_price}`}

@@ -92,10 +92,10 @@ const Graph = ({ coin }) => {
                         }
                     ]
                 }}
-                height={'400px'}
-                width={'10px'}
+                // height={400}
+                // width={10}
                 options={{
-                    maintainAspectRatio: false, 
+                    maintainAspectRatio: true, 
                     scales: {
                         xAxes: [{
                             type: 'time',

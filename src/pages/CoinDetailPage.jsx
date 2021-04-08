@@ -45,7 +45,7 @@ const CoinDetailPage = () => {
             {mobile ?
                 (
                     <Grid container spacing={1} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
-                        <Grid container direction="column" item xs={9} spacing={1} >
+                        <Grid container direction="column" item xs={12} spacing={1} >
                             <Grid item>
                                 <Paper className={`${classes.paper}  ${classes.coin}`}>
                                     <Coin coin={coin} />
@@ -59,7 +59,7 @@ const CoinDetailPage = () => {
                             </Grid>
 
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={12}>
                             <Paper className={`${classes.paper}`} style={{ padding: '5px' }}>
                                 <Graph />
                             </Paper>

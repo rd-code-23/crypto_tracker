@@ -7,7 +7,7 @@ export const CoinWatchListContextProvider = props => {
     const [currency, setCurrency] = useState('usd')
 
     const trackCoin = coin => {
-        if (coinWatchList.indexOf(coin) === -1 && coin) {
+        if (  coin && coinWatchList.filter(item => item.id === coin.id).length === 0 ) {
             setCoinWatchList([...coinWatchList, coin]);
         }
     }

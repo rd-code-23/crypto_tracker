@@ -1,19 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Card, CardActions, CardContent, Typography, IconButton, CircularProgress } from '@material-ui/core/';
+import { Grid, Card, CardContent, Typography, IconButton, CircularProgress } from '@material-ui/core/';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { CoinWatchListContext } from './../context/CoinWatchListContext.jsx';
-import axios from 'axios';
-import { getCurrencySymbol } from './../HelperFunctions.js';
+import { CoinWatchListContext } from '../../../context/CoinWatchListContext.jsx';
+import { getCurrencySymbol } from '../../../HelperFunctions.js';
 import { useHistory } from 'react-router-dom';
+import useCoinData from '../../../api/CoinData.jsx';
 
-const CoinCard = ({ coin }) => {
+const LargeCoinCard = ({ coin,unTrackCoin, currency }) => {
     const DETAIL_PAGE = `/coins/${coin.id}`
     const [isHover, setIsHover] = useState(false);
-    const [price, setPrice] = useState(0);
-    const [change24, setChange24] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const { unTrackCoin, currency } = useContext(CoinWatchListContext);
+    const { price, change24, isLoading } = useCoinData(coin)
     const history = useHistory()
 
     const useStyles = makeStyles({
@@ -29,8 +26,6 @@ const CoinCard = ({ coin }) => {
             marginRight: '30px',
         },
         priceChangePercentage: {
-            // padding: '5px',
-            // marginLeft: '30px',
             color: `${coin.price_change_percentage_24h < 0 ? 'red' : 'green'}`,
             fontFamily: 'Russo One'
         },
@@ -58,31 +53,6 @@ const CoinCard = ({ coin }) => {
 
     const onMouseOver = () => setIsHover(true);
     const onMouseOut = () => setIsHover(false);
-
-    useEffect(() => {
-        const fetchApi = async () => {
-            try {
-                setIsLoading(true)
-                const res = await axios.get('https://rdmycorsproxy.herokuapp.com/https://api.coingecko.com/api/v3/coins/markets', {
-                    params: {
-                        vs_currency: currency,
-                        ids: coin.id,
-                    }
-                })
-                setPrice(res.data[0]["current_price"]);
-                setChange24(res.data[0]["price_change_percentage_24h"]);
-                setIsLoading(false)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchApi();
-
-        const intervalId = setInterval(() => { fetchApi() }, 45000)
-        return () => {
-            clearInterval(intervalId)
-        }
-    }, [currency, coin.id])
 
     const renderPage = () => {
 
@@ -142,7 +112,6 @@ const CoinCard = ({ coin }) => {
                                         </Typography>
                                     )}
                             </Grid>
-
                         </Grid>
                     </CardContent>
                 </Card >
@@ -150,11 +119,11 @@ const CoinCard = ({ coin }) => {
         )
     }
 
-    return ( //212f45 252422 333533
+    return (
         <>
             {renderPage()}
         </>
     )
 }
 
-export default CoinCard
+export default LargeCoinCard

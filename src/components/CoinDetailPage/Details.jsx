@@ -8,8 +8,8 @@ const Details = ({ coin, isLoading }) => {
 
     return (
         <div>
-            <Grid container justify="center" alignItems="center">
-                <Grid item xs={3}></Grid>
+            <Grid container justify="center" alignItems="center" style={{ padding: '15px' }}>
+                <Grid item xs={1}></Grid>
 
                 {isLoading ?
                     (
@@ -20,7 +20,7 @@ const Details = ({ coin, isLoading }) => {
                         </Grid>
                     ) :
                     (
-                        <Grid container direction="column" justify="space-between" item xs={6} style={{ marginTop: '30px' }}>
+                        <Grid container direction="column" justify="space-between" item  lg={10} style={{ marginTop: '30px',padding: '10px' }}>
                             <Detail
                                 category={'Price'}
                                 value={`${getCurrencySymbol(currency)} ${coin.current_price}`}
@@ -48,7 +48,7 @@ const Details = ({ coin, isLoading }) => {
 
 
 
-                <Grid item xs={3}></Grid>
+                <Grid item xs={1}></Grid>
             </Grid>
         </div>
     )

@@ -4,14 +4,19 @@ import { Typography, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import { Line } from 'react-chartjs-2';
 import { CoinWatchListContext } from './../../context/CoinWatchListContext.jsx';
-import { useParams } from 'react-router'
-
+import { useParams } from 'react-router';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { MOBILE_WIDTH } from './../../HelperFunctions';
+import Moment from 'moment'
+// https://github.com/adopted-ember-addons/ember-pikaday/issues/156
 const Graph = ({ coin }) => {
 
     const [data, setData] = useState({});
     const [timestamp, setTimestamp] = useState([]);
     const [prices, setPrices] = useState([]);
     const { currency } = useContext(CoinWatchListContext);
+    const mobile = useMediaQuery("(max-width: 1290px)");
+
     //  console.log("Coin: ", coin.name);
     const { id } = useParams();
 
@@ -29,11 +34,12 @@ const Graph = ({ coin }) => {
             });
             return a;
         }, []);
-        setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
+       // setTimestamp(d.map(item => new Date(item).toLocaleString([], { hour12: true })).filter((item, index) => !(index % 2)))
+          setTimestamp(d.map(item =>  Moment(new Date(item)).format("M/D/YYYY, h:mm:ss a") ).filter((item, index) => !(index % 2)))
         setPrices(d.filter((item, index) => index % 2))
 
-    }
 
+    }
     useEffect(() => {
         const fetchApi = async () => {
             // setIsLoading(true);
@@ -75,40 +81,74 @@ const Graph = ({ coin }) => {
 
     // })
     // const {day} = data;
-    console.log(prices);
+    // console.log(prices);
     //console.log("Coin:", day[0].x);
+    // console.log(timestamp);
     return (
-        <div>
-
-            <Line
-                data={{
-                    labels: timestamp,
-                    datasets: [
-                        {
-                            label: 'price',
-                            data: prices,
-                            borderWidth: 2,
-                            borderColor: "#606c38",
-                        }
-                    ]
-                }}
-                // height={400}
-                // width='100vw'
-                options={{
-                    maintainAspectRatio: true, 
-                    scales: {
-                        xAxes: [{
-                            type: 'time',
-                            ticks: {
-                                autoSkip: true,
-                                maxTicksLimit: 20
+        <>
+            {mobile ? (
+                <div style={{ minHeight: '40vh',maxHeight: '50vh' }}>
+                    <Line
+                        data={{
+                            labels: timestamp,
+                            datasets: [
+                                {
+                                    label: 'price',
+                                    data: prices,
+                                    borderWidth: 2,
+                                    borderColor: "#606c38",
+                                }
+                            ]
+                        }}
+                        // width={900}
+                        // height={900}
+                        options={{
+                            maintainAspectRatio: false,
+                            scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    ticks: {
+                                        autoSkip: true,
+                                        maxTicksLimit: 5
+                                    }
+                                }]
+                            },
+                            elements: {
+                                point:{
+                                    radius: 0
+                                }
                             }
-                        }]
-                    }
-                }}
-            />
+                        }}
+                    />    </div>) : (<Line
+                        data={{
+                            labels: timestamp,
+                            datasets: [
+                                {
+                                    label: 'price',
+                                    data: prices,
+                                    borderWidth: 2,
+                                    borderColor: "#606c38",
+                                }
+                            ]
+                        }}
+                        // height={400}
+                        // width={10}
+                        options={{
+                            maintainAspectRatio: true,
+                            scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    ticks: {
+                                        autoSkip: true,
+                                        maxTicksLimit: 20
+                                    }
+                                }]
+                            }
+                        }}
+                    />)}
 
-        </div>
+
+        </>
     )
 }
 

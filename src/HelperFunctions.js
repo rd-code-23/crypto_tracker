@@ -12,3 +12,7 @@ export const getCurrencySymbol = (currency) => {
             return '$';
     }
 }
+
+export const MOBILE_WIDTH = "(max-width: 1024px)";
+
+

@@ -8,8 +8,13 @@ import Coin from '../components/CoinDetailPage/Coin.jsx';
 import Details from '../components/CoinDetailPage/Details.jsx';
 import Header from './../components/Header.jsx';
 import Graph from '../components/CoinDetailPage/Graph'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+import { MOBILE_WIDTH } from './../HelperFunctions';
+
 // TODO Need to make it responsive
 const CoinDetailPage = () => {
+    const mobile = useMediaQuery(MOBILE_WIDTH);
     const useStyles = makeStyles(theme => ({
         // root: {
         //     flexGrow: 1,
@@ -25,9 +30,10 @@ const CoinDetailPage = () => {
 
         },
         mainContainer: {
-            // height: '50%',
-            width: '90%',
-            marginTop: '1%'
+            // height: '50px',
+            // width: '90%',
+            marginTop: '1%',
+            maxWidth: '100vw'
         },
         coin: {
             padding: '20px'
@@ -73,7 +79,56 @@ const CoinDetailPage = () => {
     return (
         <>
             <Header />
-            <Grid container justify="center" alignItems="center">
+            {mobile ?
+                (
+                    <Grid container spacing={1} justify="center" alignItems="center"  className={`${classes.mainContainer} `} >
+                        <Grid container direction="column" item xs={9} spacing={1} >
+                            <Grid item  >
+                                <Paper className={`${classes.paper}  ${classes.coin}`}>
+                                    <Coin coin={coin} />
+                                </Paper>
+                            </Grid>
+
+                            <Grid item >
+                                <Paper className={`${classes.paper}`}>
+                                    <Details coin={coin} isLoading={isLoading} />
+                                </Paper>
+                            </Grid>
+
+                        </Grid>
+                        <Grid item xs={9} >
+                            <Paper className={`${classes.paper}`} style={{ padding: '5px' }}>
+
+                                <Graph coin={coin} />
+                            </Paper>
+                        </Grid>
+
+
+                    </Grid>
+                ) :
+                (<Grid container spacing={2} justify="center" alignItems="center" className={`${classes.mainContainer} `} >
+                    <Grid container direction="column" item xs={4} spacing={1} >
+                        <Grid item  >
+                            <Paper className={`${classes.paper}  ${classes.coin}`}>
+                                <Coin coin={coin} />
+                            </Paper>
+                        </Grid>
+
+                        <Grid item >
+                            <Paper className={`${classes.paper}`}>
+                                <Details coin={coin} isLoading={isLoading} />
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={7} >
+                        <Paper className={`${classes.paper}`} style={{ padding: '20px' }}>
+                            <Graph coin={coin} />
+                        </Paper>
+                    </Grid>
+
+                </Grid>)}
+
+            {/* <Grid container justify="center" alignItems="center">
                 <Grid container item justify="center" alignItems="stretch" className={classes.mainContainer}  spacing={4}>
                     <Grid container direction="column" item xs={6} spacing={1} >
                         <Grid item xs={12} >
@@ -97,7 +152,7 @@ const CoinDetailPage = () => {
                     </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </>
     )
 }

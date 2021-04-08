@@ -8,9 +8,9 @@ import useHistoryCoinData from './../../api/HistoryCoinData';
 
 const Graph = () => {
     const { id } = useParams();
-    const { timestamp, prices, isLoading } = useHistoryCoinData(id)
+    const { coinData, isLoading } = useHistoryCoinData(id)
     const mobile = useMediaQuery(MOBILE_WIDTH);
-
+    console.log(coinData);
     return (
         <>
             {isLoading ?
@@ -27,11 +27,10 @@ const Graph = () => {
                             <div style={{ minHeight: '40vh', maxHeight: '50vh' }}>
                                 <Line
                                     data={{
-                                        labels: timestamp,
                                         datasets: [
                                             {
                                                 label: 'price',
-                                                data: prices,
+                                                data: coinData.day,
                                                 borderWidth: 2,
                                                 borderColor: "#606c38",
                                             }
@@ -52,8 +51,13 @@ const Graph = () => {
                                         },
                                         elements: {
                                             point: {
-                                                radius: 0
+                                                radius: 0,
+                                                hitRadius: 3,
+                                                hoverRadius: 10,
                                             }
+                                        },
+                                        tooltips: {
+                                            caretPadding: 17
                                         }
                                     }}
                                 />
@@ -62,13 +66,13 @@ const Graph = () => {
                         (
                             <Line
                                 data={{
-                                    labels: timestamp,
                                     datasets: [
                                         {
                                             label: 'price',
-                                            data: prices,
+                                            data: coinData.day,
                                             borderWidth: 2,
                                             borderColor: "#606c38",
+
                                         }
                                     ]
                                 }}
@@ -84,8 +88,22 @@ const Graph = () => {
                                                 maxTicksLimit: 20
                                             }
                                         }]
+                                    },
+                                    elements: {
+                                        point: {
+                                            radius: 0,
+                                            hitRadius: 3,
+                                            hoverRadius: 10,
+                                        }
+                                    },
+
+                                    tooltips: {
+                                        caretPadding: 17
                                     }
+
                                 }}
+
+
                             />
                         )
                 )}

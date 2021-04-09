@@ -13,7 +13,7 @@ const useAllCoinsData = (mountRef) => {
                 //not sure if this is correct way to check for mounted component
                 if (mountRef) {
                     setIsLoading(true);
-                    const res = await axios.get('https://rdmycorsproxy.herokuapp.com/https://api.coingecko.com/api/v3/coins/markets', {
+                    const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
                         params: {
                             vs_currency: "usd",
                             per_page: '250'

@@ -13,7 +13,7 @@ const useCoinData = (id) => {
         const fetchApi = async () => {
             try {
                 setIsLoading(true)
-                const res = await axios.get('https://rdmycorsproxy.herokuapp.com/https://api.coingecko.com/api/v3/coins/markets', {
+                const res = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
                     params: {
                         vs_currency: currency,
                         ids: id,

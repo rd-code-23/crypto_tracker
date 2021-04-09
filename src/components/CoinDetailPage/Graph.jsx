@@ -10,7 +10,7 @@ const Graph = () => {
     const { id } = useParams();
     const { coinData, isLoading } = useHistoryCoinData(id)
     const mobile = useMediaQuery(MOBILE_WIDTH);
-    console.log(coinData);
+
     return (
         <>
             {isLoading ?

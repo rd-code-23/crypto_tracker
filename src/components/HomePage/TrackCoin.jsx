@@ -23,7 +23,7 @@ const TrackCoin = () => {
     });
     const classes = useStyles();
 
-   const { trackCoin } = useContext(CoinWatchListContext);
+    const { trackCoin } = useContext(CoinWatchListContext);
     const [search, setSearch] = useState(null);
 
     return (

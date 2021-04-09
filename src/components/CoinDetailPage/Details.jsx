@@ -3,6 +3,7 @@ import { Grid, CircularProgress } from '@material-ui/core/';
 import Detail from './Detail.jsx';
 import { getCurrencySymbol } from './../../HelperFunctions.js';
 import { CoinWatchListContext } from './../../context/CoinWatchListContext.jsx';
+
 const Details = ({ coin, isLoading }) => {
     const { currency } = useContext(CoinWatchListContext);
 
@@ -10,7 +11,6 @@ const Details = ({ coin, isLoading }) => {
         <div>
             <Grid container justify="center" alignItems="center" style={{ padding: '15px' }}>
                 <Grid item xs={1}></Grid>
-
                 {isLoading ?
                     (
                         <Grid container item justify="center" alignItems="center" >
@@ -20,7 +20,7 @@ const Details = ({ coin, isLoading }) => {
                         </Grid>
                     ) :
                     (
-                        <Grid container direction="column" justify="space-between" item  lg={10} style={{ marginTop: '30px',padding: '10px' }}>
+                        <Grid container direction="column" justify="space-between" item lg={10} style={{ marginTop: '30px', padding: '10px' }}>
                             <Detail
                                 category={'Price'}
                                 value={`${getCurrencySymbol(currency)} ${coin.current_price}`}
@@ -45,9 +45,6 @@ const Details = ({ coin, isLoading }) => {
                         </Grid>
                     )
                 }
-
-
-
                 <Grid item xs={1}></Grid>
             </Grid>
         </div>
